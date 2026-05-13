@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Raisha — Shapno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight: #0f0306;
+            --burgundy: #1a0508;
+            --rose: #c97d87;
+            --rose-light: #e8b4b8;
+            --gold: #d4af37;
+            --cream: #fff5f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--midnight);
+            color: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Simple animated gradient background */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 80%, rgba(201, 125, 135, 0.08) 0%, transparent 50%),
+                        var(--midnight);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Floating particles - lightweight */
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            background: var(--rose);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(15, 3, 6, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            color: var(--cream);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+
+        /* Sections */
+        section {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 40px;
+        }
+
+        /* Hero */
+        .hero {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .hero-label {
+            font-size: 0.9rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--rose);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.3s;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 1.1;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.6s;
+        }
+
+        .hero-title span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            color: var(--rose-light);
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1s;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.5s;
+        }
+
+        .scroll-hint span {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            opacity: 0.6;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--rose), transparent);
+            margin: 0 auto;
+            animation: bounceLine 2s infinite;
+        }
+
+        /* Content Containers */
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+        }
+
+        /* Quotes */
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .quote-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px 30px;
+            border-radius: 16px;
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .quote-card::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--rose);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-author {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--rose-light);
+            opacity: 0.8;
+        }
+
+        /* Letter */
+        .letter-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1e080d, #140508);
+            border: 1px solid rgba(201, 125, 135, 0.2);
+            padding: 60px 50px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .letter-seal {
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .letter-content p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--rose-light);
+            margin-bottom: 20px;
+        }
+
+        .letter-signature {
+            text-align: right;
+            margin-top: 30px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        /* 100 Reasons */
+        .reasons-wrapper {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .counter-box {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .counter {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .counter-label {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rose-light);
+            margin-top: 10px;
+        }
+
+        .reasons-list {
+            column-count: 3;
+            column-gap: 20px;
+        }
+
+        .reason-item {
+            break-inside: avoid;
+            margin-bottom: 12px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--cream);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .reason-item:hover {
+            background: rgba(212, 175, 55, 0.08);
+            border-color: rgba(212, 175, 55, 0.2);
+            transform: translateX(5px);
+        }
+
+        .reason-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            min-width: 30px;
+            font-weight: 700;
+        }
+
+        /* Final Section */
+        .final-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            margin-bottom: 25px;
+            color: var(--gold);
+        }
+
+        .final-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: var(--rose-light);
+        }
+
+        .btn-main {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 18px 45px;
+            font-size: 0.95rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            border-radius: 100px;
+        }
+
+        .btn-main:hover {
+            background: var(--gold);
+            color: var(--midnight);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Fireworks Canvas */
+        #fireworks {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceLine {
+            0%, 100% { transform: scaleY(1); opacity: 0.5; }
+            50% { transform: scaleY(0.6); opacity: 1; }
+        }
+
+        /* Scroll Reveal Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .reasons-list { column-count: 2; }
+            nav { padding: 15px 20px; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 0.7rem; letter-spacing: 1px; }
+            section { padding: 80px 20px; }
+            .letter-box { padding: 40px 25px; }
+            .quotes-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .reasons-list { column-count: 1; }
+            .hero-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-gradient"></div>
+
+    <!-- Floating Particles (lightweight divs instead of canvas) -->
+    <div class="particle" style="width:4px;height:4px;left:10%;animation-duration:15s;animation-delay:0s;"></div>
+    <div class="particle" style="width:6px;height:6px;left:20%;animation-duration:18s;animation-delay:2s;background:var(--gold);"></div>
+    <div class="particle" style="width:3px;height:3px;left:35%;animation-duration:12s;animation-delay:4s;"></div>
+    <div class="particle" style="width:5px;height:5px;left:50%;animation-duration:20s;animation-delay:1s;background:var(--gold);"></div>
+    <div class="particle" style="width:4px;height:4px;left:65%;animation-duration:16s;animation-delay:3s;"></div>
+    <div class="particle" style="width:3px;height:3px;left:80%;animation-duration:14s;animation-delay:5s;background:var(--gold);"></div>
+    <div class="particle" style="width:5px;height:5px;left:90%;animation-duration:17s;animation-delay:0s;"></div>
+    <div class="particle" style="width:4px;height:4px;left:15%;animation-duration:19s;animation-delay:6s;"></div>
+    <div class="particle" style="width:3px;height:3px;left:45%;animation-duration:13s;animation-delay:7s;background:var(--gold);"></div>
+    <div class="particle" style="width:6px;height:6px;left:75%;animation-duration:21s;animation-delay:4s;"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Shapno & Raisha</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#quotes">Words</a></li>
+            <li><a href="#letter">Letter</a></li>
+            <li><a href="#reasons">100 Reasons</a></li>
+            <li><a href="#wish">Wish</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-label">A Celebration of You</div>
+        <h1 class="hero-title">Happy Birthday<br><span>Raisha</span></h1>
+        <div class="hero-sub">From Shapno, With All My Heart</div>
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Quotes -->
+    <section id="quotes">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Timeless Words</span>
+                <h2 class="section-title">Quotes That Remind Me of You</h2>
+            </div>
+            <div class="quotes-grid">
+                <div class="quote-card reveal">
+                    <p class="quote-text">In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.</p>
+                    <div class="quote-author">— Maya Angelou</div>
+                </div>
+                <div class="quote-card reveal">
+                    <p class="quote-text">I saw that you were perfect, and so I loved you. Then I saw that you were not perfect and I loved you even more.</p>
+                    <div class="quote-author">— Angelita Lim</div>
+                </div>
+                <div class="quote-card reveal">
+                    <p class="quote-text">You are my sun, my moon, and all my stars. Every day with you is my favorite day.</p>
+                    <div class="quote-author">— E.E. Cummings</div>
+                </div>
+                <div class="quote-card reveal">
+                    <p class="quote-text">I would rather spend one lifetime with you, than face all the ages of this world alone.</p>
+                    <div class="quote-author">— J.R.R. Tolkien</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Letter -->
+    <section id="letter">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">From My Heart</span>
+                <h2 class="section-title">A Letter To You</h2>
+            </div>
+            <div class="letter-box reveal">
+                <div class="letter-seal">❦</div>
+                <div class="letter-content">
+                    <p>My Dearest Raisha,</p>
+                    <p>On this day, I find myself overwhelmed with gratitude. Not just for your birth, but for every moment since that has led you to me. You are the poetry I never knew how to write.</p>
+                    <p>In your eyes, I find a home. In your laughter, I find my peace. You have this incredible way of making my heart feel full simply by existing.</p>
+                    <p>Today, I celebrate you—not just as my girlfriend, but as the extraordinary soul you are. I have gathered one hundred reasons here, though I could gather a thousand more. Happy Birthday, my love.</p>
+                    <div class="letter-signature">Forever Yours,<br>— Shapno</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 100 Reasons -->
+    <section id="reasons">
+        <div class="reasons-wrapper">
+            <div class="counter-box reveal">
+                <div class="counter" id="counter">100</div>
+                <div class="counter-label">Reasons Why I Love You</div>
+            </div>
+            <div class="reasons-list" id="reasons-list"></div>
+        </div>
+    </section>
+
+    <!-- Final Wish -->
+    <section id="wish" style="min-height:100vh;position:relative;">
+        <canvas id="fireworks"></canvas>
+        <div class="final-content">
+            <h2 class="final-title reveal">Make a Wish</h2>
+            <p class="final-text reveal">
+                On this special day, I hope all your dreams take flight.<br>
+                You deserve every happiness this world can offer.<br>
+                I love you to the moon and back, today and always.
+            </p>
+            <button class="btn-main reveal" id="celebrate-btn">Celebrate Us</button>
+        </div>
+    </section>
+
+    <script>
+        // ======================
+        // 100 REASONS DATA
+        // ======================
+        const reasons = [
+            "Your smile", "Your laugh", "Your amber eyes", "Your endless energy", "Your confidence",
+            "Your stubbornness", "Your honesty", "Your kindness", "Your dramatic plans", "Your imagination",
+            "Your ridiculous plans", "Your courage", "Your optimism", "Your warmth", "Your voice",
+            "The way you say my name", "Your determination", "Your sincerity", "Your loyalty", "Your innocence",
+            "Your mischief", "Your unpredictability", "Your passion", "Your enthusiasm", "Your softness",
+            "Your strength", "Your persistence", "Your empathy", "Your clumsiness", "Your grace",
+            "Your intelligence", "Your curiosity", "Your stubborn hope", "Your selflessness", "Your boldness",
+            "Your elegance", "Your sweetness", "Your resilience", "Your trust in me", "Your faith in me",
+            "The way you brighten the room", "Your ability to make me react", "Your refusal to give up", "Your sense of duty", "Your belief in fate",
+            "Your dramatic entrances", "Your dramatic exits", "Your little pout", "Your teasing smile", "Your rare moments of silence",
+            "Your laugh when you're proud of yourself", "Your excitement over little things", "Your protective side", "Your caring nature", "Your habit of dragging me along",
+            "Your confidence in your villainess act", "Your sincerity even in nonsense", "Your courage in fear", "Your refusal to be broken", "Your ability to surprise me",
+            "Your endless devotion", "Your patience", "Your forgiveness", "Your tenderness", "Your playful nature",
+            "Your ability to make me stay", "Your honesty about what you want", "Your ability to see good in me", "Your stubborn loyalty", "The way you stand beside me",
+            "Your unshaken trust", "Your bright spirit", "Your chaotic charm", "Your habit of making everything interesting", "Your presence",
+            "How noticeable your absence is", "Your influence on me", "Your ability to make me care", "Your determination to protect others", "Your emotional honesty",
+            "Your bravery", "Your innocence in love", "Your refusal to hate", "Your ability to forgive", "Your happiness",
+            "Your earnestness", "Your optimism", "Your loyalty to those you love", "Your smile directed at me", "Your laughter because of me",
+            "Your tears that I want to stop", "Your fears I want to ease", "Your dreams", "Your future", "Your nonsense",
+            "The way you change me", "The way you understand me", "The way you stay", "The way you love", "You being yourself"
+        ];
+
+        // Render reasons
+        const list = document.getElementById('reasons-list');
+        reasons.forEach((r, i) => {
+            const div = document.createElement('div');
+            div.className = 'reason-item reveal';
+            div.innerHTML = `<span class="reason-num">${i + 1}</span> ${r}`;
+            list.appendChild(div);
+        });
+
+        // ======================
+        // SCROLL REVEAL (Simple & Fast)
+        // ======================
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // ======================
+        // COUNTER ANIMATION
+        // ======================
+        let counted = false;
+        const counterEl = document.getElementById('counter');
+        const counterObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !counted) {
+                    counted = true;
+                    let n = 0;
+                    const timer = setInterval(() => {
+                        n++;
+                        counterEl.textContent = n;
+                        if (n >= 100) clearInterval(timer);
+                    }, 15);
+                }
+            });
+        }, { threshold: 0.5 });
+        counterObs.observe(document.querySelector('.counter-box'));
+
+        // ======================
+        // LIGHTWEIGHT FIREWORKS
+        // ======================
+        const c = document.getElementById('fireworks');
+        const x = c.getContext('2d');
+        let W, H, fw = [], parts = [];
+
+        function resize() {
+            W = c.width = window.innerWidth;
+            H = c.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        function newFW() {
+            return {
+                x: Math.random() * W * 0.8 + W * 0.1,
+                y: H,
+                tx: Math.random() * W * 0.8 + W * 0.1,
+                ty: Math.random() * H * 0.4 + 50,
+                speed: 7,
+                hue: Math.random() * 60 + 330,
+                dead: false
+            };
+        }
+
+        function explode(f) {
+            for (let i = 0; i < 40; i++) {
+                const ang = Math.random() * Math.PI * 2;
+                const sp = Math.random() * 4 + 1;
+                parts.push({
+                    x: f.x, y: f.y,
+                    vx: Math.cos(ang) * sp,
+                    vy: Math.sin(ang) * sp,
+                    hue: f.hue + Math.random() * 30 - 15,
+                    life: 1,
+                    decay: Math.random() * 0.02 + 0.01
+                });
+            }
+        }
+
+        function loop() {
+            x.fillStyle = 'rgba(15, 3, 6, 0.2)';
+            x.fillRect(0, 0, W, H);
+
+            // Update fireworks
+            for (let i = fw.length - 1; i >= 0; i--) {
+                const f = fw[i];
+                const dx = f.tx - f.x;
+                const dy = f.ty - f.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < f.speed || f.y <= f.ty) {
+                    explode(f);
+                    fw.splice(i, 1);
+                    continue;
+                }
+                f.x += (dx / dist) * f.speed;
+                f.y += (dy / dist) * f.speed;
+                x.beginPath();
+                x.arc(f.x, f.y, 3, 0, Math.PI * 2);
+                x.fillStyle = `hsl(${f.hue}, 100%, 60%)`;
+                x.fill();
+            }
+
+            // Update particles
+            for (let i = parts.length - 1; i >= 0; i--) {
+                const p = parts[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.08;
+                p.vx *= 0.96;
+                p.life -= p.decay;
+                if (p.life <= 0) {
+                    parts.splice(i, 1);
+                    continue;
+                }
+                x.globalAlpha = p.life;
+                x.beginPath();
+                x.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                x.fillStyle = `hsl(${p.hue}, 100%, 65%)`;
+                x.fill();
+            }
+            x.globalAlpha = 1;
+
+            requestAnimationFrame(loop);
+        }
+        loop();
+
+        // Auto launch on scroll to final section
+        let launched = false;
+        const finalObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !launched) {
+                    launched = true;
+                    for (let i = 0; i < 5; i++) setTimeout(() => fw.push(newFW()), i * 300);
+                }
+            });
+        }, { threshold: 0.3 });
+        finalObs.observe(document.getElementById('wish'));
+
+        // Button launches more
+        document.getElementById('celebrate-btn').addEventListener('click', function() {
+            this.textContent = 'I Love You, Raisha!';
+            this.style.background = 'var(--gold)';
+            this.style.color = 'var(--midnight)';
+            for (let i = 0; i < 8; i++) setTimeout(() => fw.push(newFW()), i * 200);
+        });
+
+        // ======================
+        // SMOOTH NAV
+        // ======================
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
